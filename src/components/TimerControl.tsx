@@ -16,7 +16,8 @@ export const TimerControl = () => {
   }
 
   const handlePause = () => {
-    
+    clearInterval(interval)
+    dispatch(setTimerInterval(undefined))
   }
 
   const handleRefresh = () => {
