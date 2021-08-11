@@ -5,6 +5,7 @@ const now = new Date().getTime()
 const future = now + 25 * 60 * 1000
 
 const initialState = {
+  interval: undefined as number | undefined,
   break: 5,
   session: 25,
   timer: {
@@ -38,6 +39,13 @@ export const timerSlice = createSlice({
     decrementFuture: (state) => {
       state.timer.future = state.timer.future - 1 * 1000
     },
+    setTimerInterval: (state, action) => {
+      state.interval = action.payload
+    },
+    reset: (state) => {
+      clearInterval(state.interval)
+      return initialState
+    }
   },
 })
 
@@ -47,6 +55,8 @@ export const {
   incrementSession,
   decrementSession,
   decrementFuture,
+  setTimerInterval,
+  reset,
 } = timerSlice.actions
 
 export const selectBreak = (state: RootState) => state.timer.break
@@ -59,4 +69,5 @@ export const selectCountdown = (state: RootState) => {
     seconds: diffTime.getSeconds(),
   }
 }
+export const selectInterval = (state: RootState) => state.timer.interval
 export default timerSlice.reducer;

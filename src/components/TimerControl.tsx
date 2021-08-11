@@ -1,15 +1,18 @@
 import { IoMdPause, IoMdPlay, IoMdRefresh } from "react-icons/io"
-import { useAppDispatch } from "../app/hooks"
-import { decrementFuture } from "../features/timerSlice"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { decrementFuture, reset, selectInterval, setTimerInterval } from "../features/timerSlice"
 
 export const TimerControl = () => {
   const dispatch = useAppDispatch()
-  let timeInterval
+  const interval = useAppSelector(selectInterval)
 
   const handlePlay = () => {
-    timeInterval = setInterval(() => {
-      dispatch(decrementFuture())
-    }, 1000)
+    if ( !interval ) {
+      const timerInterval = setInterval(() => {
+        dispatch(decrementFuture())
+      }, 1000)
+      dispatch(setTimerInterval(timerInterval))
+    }
   }
 
   const handlePause = () => {
@@ -17,7 +20,7 @@ export const TimerControl = () => {
   }
 
   const handleRefresh = () => {
-    
+    dispatch(reset())
   }
 
   return (
