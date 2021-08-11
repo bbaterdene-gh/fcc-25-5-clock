@@ -10,6 +10,9 @@ module.exports = {
     borderRadius: {
       '4xl': '2.5rem'
     },
+    fontFamily: {
+      'monte-carlo': ["'MonteCarlo'", 'cursive'],
+    }
   },
   variants: {
     extend: {},

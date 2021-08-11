@@ -1,21 +1,22 @@
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
-import { decrementSession, incrementSession, selectSession } from '../features/timerSlice'
+import { decrementSession, incrementSession, selectInterval, selectSession } from '../features/timerSlice'
 
 export const SessionLength = () => {
   const dispatch = useAppDispatch()
   const session = useAppSelector(selectSession)
+  const interval = useAppSelector(selectInterval)
 
   const handleUpClick = () => {
-    dispatch(incrementSession())
+    if (!interval) dispatch(incrementSession())
   }
 
   const handleDownClick = () => {
-    dispatch(decrementSession())
+    if (!interval) dispatch(decrementSession())
   }
 
   return (
-    <div className="flex flex-col text-xl py-1">
+    <div className="flex flex-col text-xl py-1 items-center">
       <div>
         Session Length
       </div>

@@ -1,21 +1,22 @@
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
-import { decrementBreak, incrementBreak, selectBreak } from '../features/timerSlice'
+import { decrementBreak, incrementBreak, selectBreak, selectInterval } from '../features/timerSlice'
 
 export const BreakLength = () => {
   const dispatch = useAppDispatch()
   const breakValue = useAppSelector(selectBreak)
+  const interval = useAppSelector(selectInterval)
 
   const handleUpClick = () => {
-    dispatch(incrementBreak())
+    if (!interval) dispatch(incrementBreak())
   }
 
   const handleDownClick = () => {
-    dispatch(decrementBreak())
+    if (!interval) dispatch(decrementBreak())
   }
 
   return (
-    <div className="flex flex-col text-xl py-1">
+    <div className="flex flex-col text-xl py-1 items-center">
       <div>
         Break Length
       </div>
