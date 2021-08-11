@@ -1,12 +1,12 @@
 
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
 
 export const timerSlice = createSlice({
   name: 'timer',
   initialState: {
     break: 5,
-    session: 5,
+    session: 25,
     time: 25,
   },
   reducers: {
