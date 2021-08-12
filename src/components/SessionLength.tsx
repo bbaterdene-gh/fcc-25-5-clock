@@ -16,7 +16,7 @@ export const SessionLength = () => {
   }
 
   return (
-    <div className="flex flex-col text-xl py-1 items-center">
+    <div className="flex flex-col text-xl py-1 items-center md:ml-4">
       <div>
         Session Length
       </div>

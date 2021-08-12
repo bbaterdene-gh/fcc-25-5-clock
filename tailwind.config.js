@@ -12,7 +12,10 @@ module.exports = {
     },
     fontFamily: {
       'monte-carlo': ["'MonteCarlo'", 'cursive'],
-    }
+    },
+    minWidth: {
+      'xs': '320px',
+    },
   },
   variants: {
     extend: {},

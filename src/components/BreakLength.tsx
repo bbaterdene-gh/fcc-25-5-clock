@@ -16,7 +16,7 @@ export const BreakLength = () => {
   }
 
   return (
-    <div className="flex flex-col text-xl py-1 items-center">
+    <div className="flex flex-col text-xl py-1 items-center md:mr-4">
       <div>
         Break Length
       </div>
