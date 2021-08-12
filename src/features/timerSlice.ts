@@ -80,7 +80,12 @@ export const selectSession = (state: RootState) => state.timer.session
 export const selectCountdown = (state: RootState) => {
   const diff = state.timer.timer.future - state.timer.timer.now
   const diffTime = new Date(diff)
-  const minutes = diffTime.getMinutes() === 0 ? 60 : diffTime.getMinutes()
+  let minutes
+  if ( diffTime.getMinutes() === 0 && diffTime.getSeconds() === 0 && diff !== 0) {
+    minutes = 60
+  } else {
+    minutes = diffTime.getMinutes()
+  }
   return {
     minutes,
     seconds: diffTime.getSeconds(),
