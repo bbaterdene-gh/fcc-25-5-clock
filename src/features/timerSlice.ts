@@ -20,7 +20,9 @@ export const timerSlice = createSlice({
   initialState,
   reducers: {
     incrementBreak: (state) => {
-      state.break += 1
+      if (state.break < 60) {
+        state.break += 1
+      }
     },
     decrementBreak: (state) => {
       if (state.break > 1) {
@@ -28,8 +30,10 @@ export const timerSlice = createSlice({
       }
     },
     incrementSession: (state) => {
-      state.session += 1
-      state.timer.future = state.timer.now + state.session * 60 * 1000
+      if (state.session < 60) {
+        state.session += 1
+        state.timer.future = state.timer.now + state.session * 60 * 1000
+      }
     },
     decrementSession: (state) => {
       if (state.session > 1) {
@@ -76,8 +80,9 @@ export const selectSession = (state: RootState) => state.timer.session
 export const selectCountdown = (state: RootState) => {
   const diff = state.timer.timer.future - state.timer.timer.now
   const diffTime = new Date(diff)
+  const minutes = diffTime.getMinutes() === 0 ? 60 : diffTime.getMinutes()
   return {
-    minutes: diffTime.getMinutes(),
+    minutes,
     seconds: diffTime.getSeconds(),
   }
 }
