@@ -28,7 +28,7 @@ export const TimerControl = () => {
     <div className="flex text-2xl mt-2">
       <IoMdPlay className="cursor-pointer" onClick={handlePlay}/>
       <IoMdPause className="cursor-pointer mx-2" onClick={handlePause}/>
-      <IoMdRefresh className="cursor-pointer" onClick={handleRefresh}/>
+      <IoMdRefresh className="cursor-pointer" onClick={handleRefresh} id="reset"/>
     </div>
   )
 }

@@ -17,13 +17,13 @@ export const BreakLength = () => {
 
   return (
     <div className="flex flex-col text-xl py-1 items-center md:mr-4">
-      <div>
+      <div id="break-label">
         Break Length
       </div>
       <div className="flex justify-center items-center">
-        <FaArrowUp className="cursor-pointer" onClick={handleUpClick}/>
-        <span className="mx-2">{breakValue}</span>
-        <FaArrowDown className="cursor-pointer" onClick={handleDownClick}/>
+        <FaArrowUp className="cursor-pointer" onClick={handleUpClick} id="break-increment"/>
+        <span className="mx-2" id="break-length">{breakValue}</span>
+        <FaArrowDown className="cursor-pointer" onClick={handleDownClick} id="break-decrement"/>
       </div>
     </div>
   )
