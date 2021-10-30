@@ -37,6 +37,7 @@ export const TimerControl = () => {
         <IoMdPause className="cursor-pointer"/>
       </div>
       <IoMdRefresh className="cursor-pointer" onClick={handleRefresh} id="reset"/>
+      <audio id="beep" preload="auto" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"></audio>
     </div>
   )
 }

@@ -46,6 +46,8 @@ export const timerSlice = createSlice({
         state.time.future = state.time.future - 1 * 1000
       } else {
         state.inSession = !state.inSession
+        const audio = document.getElementById('beep') as HTMLAudioElement
+        audio.play()
         if (state.inSession) {
           state.time.now = new Date().getTime()
           state.time.future = state.time.now + state.session * 60 * 1000
