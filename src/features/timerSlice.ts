@@ -9,7 +9,7 @@ const initialState = {
   interval: undefined as number | undefined,
   break: 5,
   session: 25,
-  timer: {
+  time: {
     now,
     future,
   },
@@ -32,26 +32,26 @@ export const timerSlice = createSlice({
     incrementSession: (state) => {
       if (state.session < 60) {
         state.session += 1
-        state.timer.future = state.timer.now + state.session * 60 * 1000
+        state.time.future = state.time.now + state.session * 60 * 1000
       }
     },
     decrementSession: (state) => {
       if (state.session > 1) {
         state.session -= 1
       }
-      state.timer.future = state.timer.now + state.session * 60 * 1000
+      state.time.future = state.time.now + state.session * 60 * 1000
     },
     decrementFuture: (state) => {
-      if (state.timer.future !== state.timer.now) {
-        state.timer.future = state.timer.future - 1 * 1000
+      if (state.time.future !== state.time.now) {
+        state.time.future = state.time.future - 1 * 1000
       } else {
         state.inSession = !state.inSession
         if (state.inSession) {
-          state.timer.now = new Date().getTime()
-          state.timer.future = state.timer.now + state.session * 60 * 1000
+          state.time.now = new Date().getTime()
+          state.time.future = state.time.now + state.session * 60 * 1000
         } else {
-          state.timer.now = new Date().getTime()
-          state.timer.future = state.timer.now + state.break * 60 * 1000
+          state.time.now = new Date().getTime()
+          state.time.future = state.time.now + state.break * 60 * 1000
         }
       }
     },
@@ -78,7 +78,7 @@ export const {
 export const selectBreak = (state: RootState) => state.timer.break
 export const selectSession = (state: RootState) => state.timer.session
 export const selectCountdown = (state: RootState) => {
-  const diff = state.timer.timer.future - state.timer.timer.now
+  const diff = state.timer.time.future - state.timer.time.now
   const diffTime = new Date(diff)
   let minutes
   if ( diffTime.getMinutes() === 0 && diffTime.getSeconds() === 0 && diff !== 0) {

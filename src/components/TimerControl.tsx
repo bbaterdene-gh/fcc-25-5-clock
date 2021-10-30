@@ -7,12 +7,10 @@ export const TimerControl = () => {
   const interval = useAppSelector(selectInterval)
 
   const handlePlay = () => {
-    if ( !interval ) {
-      const timerInterval = setInterval(() => {
-        dispatch(decrementFuture())
-      }, 1000)
-      dispatch(setTimerInterval(timerInterval))
-    }
+    const timerInterval = setInterval(() => {
+      dispatch(decrementFuture())
+    }, 1000)
+    dispatch(setTimerInterval(timerInterval))
   }
 
   const handlePause = () => {
@@ -24,10 +22,20 @@ export const TimerControl = () => {
     dispatch(reset())
   }
 
+  const handleStartStop = () => {
+    if ( !interval ) {
+      handlePlay()
+    } else {
+      handlePause()
+    }
+  }
+
   return (
     <div className="flex text-2xl mt-2">
-      <IoMdPlay className="cursor-pointer" onClick={handlePlay}/>
-      <IoMdPause className="cursor-pointer mx-2" onClick={handlePause}/>
+      <div id="start_stop" className="flex mr-3" onClick={handleStartStop}>
+        <IoMdPlay className="cursor-pointer"/>
+        <IoMdPause className="cursor-pointer"/>
+      </div>
       <IoMdRefresh className="cursor-pointer" onClick={handleRefresh} id="reset"/>
     </div>
   )
